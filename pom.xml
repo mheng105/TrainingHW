@@ -27,6 +27,7 @@
         <apache.poi.version>5.2.3</apache.poi.version>
         <allure.cucumber5.version>2.14.0</allure.cucumber5.version>
         <cucumber.version>6.10.4</cucumber.version>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -104,6 +105,15 @@
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
