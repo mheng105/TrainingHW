@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ResgristerResponseData {
+public class RegisterResponseData {
     @SerializedName("Id")
     public int id;
     @SerializedName("Name")

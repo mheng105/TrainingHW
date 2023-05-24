@@ -1,9 +1,9 @@
-package com.demo.api.feature;
+package com.demo.api.core;
 
 import com.demo.api.dto.request.LoginRequest;
 import com.demo.api.dto.request.RegisterRequestObject;
+import com.demo.api.dto.response.regrister.RegisterResponseData;
 import com.demo.api.pageobject.RegisterPage;
-import com.demo.api.pageobject.ResgristerPage;
 import com.demo.api.utils.DataUtils;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -38,8 +38,10 @@ public class BaseTest {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail(email);
         loginRequest.setPassword(password);
-        token =  new ResgristerPage().getTokenLogin(loginRequest);
-        id=new RegisterPage().getId(registerRequest);
+
+        RegisterResponseData res=new RegisterPage().login(loginRequest);
+        token =  new RegisterPage().getTokenLogin(res);
+        id=new RegisterPage().getId(res);
 
 
         System.out.println("token = " + token);

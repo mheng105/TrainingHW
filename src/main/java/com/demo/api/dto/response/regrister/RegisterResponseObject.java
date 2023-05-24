@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ResgristerResponseObject {
+public class RegisterResponseObject {
     public int code;
     public String message;
-    public ResgristerResponseData data;
+    public RegisterResponseData data;
 
 }
