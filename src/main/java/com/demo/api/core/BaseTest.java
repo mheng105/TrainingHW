@@ -1,7 +1,8 @@
-package com.demo.api.core;
+package com.demo.api.feature;
 
 import com.demo.api.dto.request.LoginRequest;
 import com.demo.api.dto.request.RegisterRequestObject;
+import com.demo.api.pageobject.RegisterPage;
 import com.demo.api.pageobject.ResgristerPage;
 import com.demo.api.utils.DataUtils;
 import io.restassured.RestAssured;
@@ -13,6 +14,7 @@ import static com.demo.api.utils.LoadConfig.LOAD_CONFIG;
 
 public class BaseTest {
     public static String token;
+    public static int id;
     public BaseTest(){
 
     }
@@ -23,21 +25,25 @@ public class BaseTest {
 
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
 
-        RegisterRequestObject resgristerRequest = new RegisterRequestObject();
-        resgristerRequest.setName(DataUtils.getData().getFirstName());
+        RegisterRequestObject registerRequest = new RegisterRequestObject();
+        registerRequest.setName(DataUtils.getData().getFirstName());
 
         String email = DataUtils.getData().getEmail();
         int password = DataUtils.getData().getPassword();
-        resgristerRequest.setEmail(email);
-        resgristerRequest.setPassword(password);
-        new ResgristerPage().getToken(resgristerRequest);
+
+        registerRequest.setEmail(email);
+        registerRequest.setPassword(password);
+        new RegisterPage().getToken(registerRequest);
 
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail(email);
         loginRequest.setPassword(password);
         token =  new ResgristerPage().getTokenLogin(loginRequest);
+        id=new RegisterPage().getId(registerRequest);
+
 
         System.out.println("token = " + token);
+        System.out.println("id= "+id);
     }
 
 }
